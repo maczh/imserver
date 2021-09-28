@@ -1,0 +1,2 @@
+# imserver
+基于SpringCloud微服务的即时通信业务服务器，支持网易云和融信云的IM服务
