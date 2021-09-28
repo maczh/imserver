@@ -1,0 +1,39 @@
+spring:
+    redis:
+      host: xxx.xxx.xxx.xxx
+      port: 6379
+      password: 042d4b51fb8c33e42266
+      database: 0
+      lettuce:
+        pool:
+          max-active: 8
+          max-wait: -1ms
+          min-idle: 0
+          max-idle: 8
+
+    cache:
+      type: redis
+    application:
+      name: imserver-tags
+
+
+
+server:
+  compression:
+    enabled: true
+  port: 8072
+  session:
+    timeout: 60
+
+
+logging:
+  level:
+    com.ququ.imserver.tags: debug
+  config: classpath:logback.xml
+
+feign:
+  hystrix:
+    enabled: false
+ribbon:
+  ReadTimeout: 120000
+  ConnectTimeout: 60000

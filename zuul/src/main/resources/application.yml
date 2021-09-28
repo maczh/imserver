@@ -1,0 +1,42 @@
+spring:
+    application:
+      name: imserver-zuul
+
+server:
+  compression:
+    enabled: true
+  port: 8078
+  session:
+    timeout: 60
+
+
+zuul:
+  stripPrefix: false
+  routes:
+    customerservice:
+      path: /im/customerservice/**
+      serviceId: imserver-customerservice
+      strip-prefix: false
+    user:
+      path: /im/user/**
+      serviceId: imserver-user
+      strip-prefix: false
+    shop:
+      path: /im/shop/**
+      serviceId: imserver-shop
+      strip-prefix: false
+    message:
+      path: /im/message/**
+      serviceId: imserver-api
+      strip-prefix: false
+    tags:
+      path: /im/tags/**
+      serviceId: imserver-tags
+      strip-prefix: false
+  host:
+    connect-timeout-millis: 60000
+    connection-request-timeout-millis: 60000
+
+ribbon:
+  ReadTimeout: 120000
+  ConnectTimeout: 60000

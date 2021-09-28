@@ -1,0 +1,29 @@
+spring:
+    redis:
+      host: xxx.xxx.xxx.xxx
+      port: 6379
+      password: 042d4b51fb8c33e42266
+      database: 0
+
+    cache:
+      type: redis
+    application:
+      name: imserver-api
+
+
+server:
+  compression:
+    enabled: true
+  port: 8170
+  session:
+    timeout: 60
+
+
+logging:
+  level:
+    com.ququ.imserver.imapi: debug
+  config: classpath:logback.xml
+
+ribbon:
+  ReadTimeout: 120000
+  ConnectTimeout: 60000

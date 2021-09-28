@@ -1,0 +1,43 @@
+spring:
+    data:
+        mongodb:
+            uri: mongodb://imserver:042d4b51fb8c33e42266@xxx.xxx.xxx.xxx:27017/imserver
+    redis:
+      host: xxx.xxx.xxx.xxx
+      port: 6379
+      password: 042d4b51fb8c33e42266
+      database: 0
+      lettuce:
+        pool:
+          max-active: 8
+          max-wait: -1ms
+          min-idle: 0
+          max-idle: 8
+
+    cache:
+      type: redis
+    application:
+      name: imserver-shop
+
+
+
+
+server:
+  compression:
+    enabled: true
+  port: 8074
+  session:
+    timeout: 60
+
+
+logging:
+  level:
+    com.ququ.imserver.shop: debug
+  config: classpath:logback.xml
+
+feign:
+  hystrix:
+    enabled: false
+ribbon:
+  ReadTimeout: 120000
+  ConnectTimeout: 60000

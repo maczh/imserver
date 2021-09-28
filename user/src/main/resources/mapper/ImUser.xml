@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="IMUSER">
+	<!-- 添加-->
+	<insert id="addImUser" parameterType="com.ququ.imserver.user.pojo.ImUser">
+		INSERT IGNORE INTO im_user (
+			userid ,
+			username ,
+			mobile ,
+			sex ,
+			imuid ,
+			icon
+		)
+		VALUES (           
+			#{ userid },
+			#{ username },
+			#{ mobile },
+			#{ sex },
+			#{ imuid },
+			#{ icon }
+		)  
+	</insert>
+	
+	<!-- 更新 -->
+	<update id="updateImUser" parameterType="com.ququ.imserver.user.pojo.ImUser">
+		UPDATE  im_user       
+		   SET  
+		   <trim prefixOverrides=",">
+			   <if test=" userid  != null">,  userid = #{ userid } </if>
+			   <if test=" username  != null">,  username = #{ username } </if>
+			   <if test=" mobile  != null">,  mobile = #{ mobile } </if>
+			   <if test=" sex  != null">,  sex = #{ sex } </if>
+			   <if test=" imuid  != null">,  imuid = #{ imuid } </if>
+			   <if test=" icon  != null">,  icon = #{ icon } </if>
+			</trim>
+		WHERE id = #{id}  
+	</update>
+	
+	<!-- 删除 -->
+	<delete id="delImUser" parameterType="com.ququ.imserver.user.pojo.ImUser">
+	DELETE  FROM  im_user        
+	WHERE
+				id = #{id}  
+	</delete>
+	
+	<!-- 查询-->
+	<select id="queryImUser" parameterType="com.ququ.imserver.user.pojo.ImUser" resultType="com.ququ.imserver.user.pojo.ImUser">
+        SELECT	*
+        FROM  im_user
+		<trim prefix="where" prefixOverrides="and">
+			<if test=" id  != null"> and  id = #{ id } </if>
+			<if test=" userid  != null"> and  userid = #{ userid } </if>
+			<if test=" username  != null"> and  username = #{ username } </if>
+			<if test=" mobile  != null"> and  mobile = #{ mobile } </if>
+			<if test=" sex  != null"> and  sex = #{ sex } </if>
+			<if test=" imuid  != null"> and  imuid = #{ imuid } </if>
+			<if test=" icon  != null"> and  icon = #{ icon } </if>
+		</trim>
+	</select>
+	
+	<!-- 查询 -->
+	<select id="listImUser" parameterType="java.util.Map" resultType="com.ququ.imserver.user.pojo.ImUser">
+        SELECT	*
+        FROM  im_user
+		<trim prefix="where" prefixOverrides="and">
+			<if test=" id  != null"> and  id = #{ id } </if>
+			<if test=" userid  != null"> and  userid = #{ userid } </if>
+			<if test=" username  != null"> and  username = #{ username } </if>
+			<if test=" mobile  != null"> and  mobile = #{ mobile } </if>
+			<if test=" sex  != null"> and  sex = #{ sex } </if>
+			<if test=" imuid  != null"> and  imuid = #{ imuid } </if>
+			<if test=" icon  != null"> and  icon = #{ icon } </if>
+		</trim>
+		LIMIT #{beginDATAIndex},#{pageSize}
+	</select>
+	
+	<!-- 查询数量 -->
+	<select id="countImUser" parameterType="com.ququ.imserver.user.pojo.ImUser" resultType="_long">
+        SELECT	
+				COUNT(1)	                          			   	     		        
+        FROM    im_user    
+		<trim prefix="where" prefixOverrides="and">
+			<if test=" id  != null"> and  id = #{ id } </if>
+			<if test=" userid  != null"> and  userid = #{ userid } </if>
+			<if test=" username  != null"> and  username = #{ username } </if>
+			<if test=" mobile  != null"> and  mobile = #{ mobile } </if>
+			<if test=" sex  != null"> and  sex = #{ sex } </if>
+			<if test=" imuid  != null"> and  imuid = #{ imuid } </if>
+			<if test=" icon  != null"> and  icon = #{ icon } </if>
+		</trim>
+	</select>
+	
+	<!-- 查询-->
+	<select id="listImUserByIds" parameterType="collection" resultType="com.ququ.imserver.user.pojo.ImUser">
+        SELECT	*
+        FROM  im_user
+        WHERE id IN 
+        <foreach item="item" collection="list" open="(" separator="," close=")">  
+          #{item}  
+        </foreach>
+	</select>
+	
+</mapper>

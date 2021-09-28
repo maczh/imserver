@@ -1,0 +1,20 @@
+spring:
+    data:
+        mongodb:
+            uri: mongodb://imserver:042d4b51fb8c33e42266@4xxx.xxx.xxx.xxx:27017/imserver
+    application:
+      name: imserver-api-neteaseim
+
+server:
+  compression:
+    enabled: true
+  port: 8171
+  session:
+    timeout: 60
+
+
+logging:
+  level:
+    com.ququ.imserver.api.neteaseim: debug
+  config: classpath:logback.xml
+
